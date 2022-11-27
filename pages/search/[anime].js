@@ -1,5 +1,6 @@
 //search anime page server side props next js fetch data from api
 
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -10,14 +11,18 @@ export async function getServerSideProps(context) {
     `https://kinganimeapi.herokuapp.com/api/cari/${context.params.anime}`
   );
   const data = await res.json();
+  const title = context.params.anime;
   return {
-    props: { data },
+    props: { data, title },
   };
 }
 
 export default function Search({ data }) {
   return (
     <>
+      <Head>
+        <title>Search</title>
+      </Head>
       <Header />
 
       <div className="container mx-auto">

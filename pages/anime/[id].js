@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../components/Header";
@@ -20,6 +21,10 @@ export default function Anime({ data }) {
   return (
     <>
       <Header />
+
+      <Head>
+        <title>{data.title} - King Anime</title>
+      </Head>
       <div className="container mx-auto md:p-4  ">
         <div className="rounded-md bg-amber-100 p-4">
           <Image
