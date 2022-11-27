@@ -1,31 +1,28 @@
-import { useState, useEffect } from "react";
+//search anime page server side props next js fetch data from api
 
 import Image from "next/image";
 import Link from "next/link";
-import Header from "../components/Header";
+import { useState, useEffect } from "react";
+import Header from "../../components/Header";
 
-//get server side props next js fetch data from api
-export async function getServerSideProps() {
-  const res = await fetch("https://kinganimeapi.herokuapp.com/api/page/1");
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    `https://kinganimeapi.herokuapp.com/api/cari/${context.params.anime}`
+  );
   const data = await res.json();
   return {
     props: { data },
   };
 }
 
-export default function Home({ data }) {
-  const [anime, setAnime] = useState(data);
-
-  useEffect(() => {
-    setAnime(data);
-  }, [data]);
-
+export default function Search({ data }) {
   return (
     <>
       <Header />
+
       <div className="container mx-auto">
         <div className="grid grid-cols-1  gap-4 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {anime.map((anime) => (
+          {data.map((anime) => (
             <div
               key={anime.title}
               className=" grid grid-cols-1 rounded-lg bg-amber-200 "
@@ -38,7 +35,7 @@ export default function Home({ data }) {
                 className="rounded-t-lg"
               ></Image>
               <div className=" mt-3 p-2">
-                <Link href={`anime/${anime.link.endpoint}`}>
+                <Link href={`/anime/${anime.link.endpoint}`}>
                   <h2 className="cursor-pointer text-sm font-bold lg:text-xl">
                     {anime.title}
                   </h2>

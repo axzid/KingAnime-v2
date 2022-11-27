@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -21,7 +22,9 @@ export default function Header() {
     <>
       <div className=" fixed z-50 w-full bg-amber-200">
         <div className="container mx-auto flex flex-col items-center justify-between p-2 sm:flex-row">
-          <h1 className=" font-bold">King Anime</h1>
+          <Link href={`/`}>
+            <h1 className=" cursor-pointer font-bold">King Anime</h1>
+          </Link>
           <div>
             <input
               type="text"

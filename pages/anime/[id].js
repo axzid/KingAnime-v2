@@ -17,18 +17,17 @@ export async function getServerSideProps(context) {
 export default function Anime({ data }) {
   const download = data.list_download[0][1];
 
-  console.log(download);
   return (
     <>
       <Header />
-      <div className="container mx-auto p-4  ">
+      <div className="container mx-auto md:p-4  ">
         <div className="rounded-md bg-amber-100 p-4">
           <Image
             src={data.thumbnail}
             width={500}
             height={400}
             alt={data.title}
-            className="rounded-t-lg"
+            className="rounded-lg"
           />
           <h1 className="text-xl font-bold">{data.title}</h1>
           <h2>
